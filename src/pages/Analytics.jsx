@@ -13,7 +13,7 @@ import MonthlyBarChart from "../components/analytics/MonthlyBarChart";
 import MetricCard from "../components/analytics/MetricCard";
 import LoadingSpinner from "../components/ui/LoadingSpinner";
 import Button from "../components/ui/Button";
-import Currency from "../components/ui/Currency"; // ? new import
+import Currency from "../components/ui/Currency"; //
 
 function Analytics() {
   const [timeframe, setTimeframe] = useState("month");
@@ -81,25 +81,25 @@ function Analytics() {
         </div>
       ) : (
         <>
-          {/* Metric Cards */}
+          {/* Metric Cards
           <div className="metrics-grid">
             <MetricCard
               title="Total Spending"
-              value={<Currency amount={analytics.totalExpenses} />} // ? updated
+              value={<Currency amount={analytics.totalExpenses} />}
               subtitle={`${analytics.expenseCount} transactions`}
               icon={<DollarSign size={24} />}
               color="#ef4444"
             />
             <MetricCard
               title="Average Expense"
-              value={<Currency amount={analytics.averageExpense} />} // ? updated
+              value={<Currency amount={analytics.averageExpense} />}
               subtitle="Per transaction"
               icon={<Receipt size={24} />}
               color="#3b82f6"
             />
             <MetricCard
               title="Daily Average"
-              value={<Currency amount={analytics.dailyAverage} />} // ? updated
+              value={<Currency amount={analytics.dailyAverage} />}
               subtitle={`Over ${analytics.timeSpanDays} days`}
               icon={<Calendar size={24} />}
               color="#10b981"
@@ -115,7 +115,7 @@ function Analytics() {
               icon={<Target size={24} />}
               color="#f59e0b"
             />
-          </div>
+          </div> */}
 
           {/* Charts */}
           <div className="charts-grid">
@@ -157,7 +157,7 @@ function Analytics() {
                       </div>
                     </div>
                     <div className="expense-amount">
-                      <Currency amount={expense.amount} /> {/* ? updated */}
+                      <Currency amount={expense.amount} />
                     </div>
                   </div>
                 ))}

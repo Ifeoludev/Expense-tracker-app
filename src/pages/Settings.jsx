@@ -159,7 +159,7 @@ function Settings() {
   const tabs = [
     { id: "profile", name: "Profile", icon: User },
     { id: "budget", name: "Budget", icon: DollarSign },
-    { id: "preferences", name: "Preferences", icon: Bell },
+    { id: "preferences", name: "Preferences", icon: SettingsIcon },
     { id: "data", name: "Data", icon: Download },
   ];
 
@@ -342,7 +342,7 @@ function Settings() {
           {activeTab === "preferences" && (
             <div className="settings-panel">
               <div className="panel-header">
-                <Bell size={24} />
+                <SettingsIcon size={24} />
                 <h2>App Preferences</h2>
               </div>
 
@@ -382,18 +382,25 @@ function Settings() {
                       <input
                         type="checkbox"
                         checked={preferencesForm.darkMode}
-                        onChange={(e) =>
+                        onChange={async (e) => {
+                          const newValue = e.target.checked;
                           setPreferencesForm({
                             ...preferencesForm,
-                            darkMode: e.target.checked,
-                          })
-                        }
+                            darkMode: newValue,
+                          });
+                          await updateProfile({
+                            preferences: {
+                              ...preferencesForm,
+                              darkMode: newValue,
+                            },
+                          });
+                        }}
                       />
                       <span className="toggle-slider"></span>
                     </label>
                   </div>
 
-                  <div className="toggle-item">
+                  {/* <div className="toggle-item">
                     <div className="toggle-info">
                       <h4>Notifications</h4>
                       <p>Get notified about budget alerts</p>
@@ -402,16 +409,25 @@ function Settings() {
                       <input
                         type="checkbox"
                         checked={preferencesForm.notifications}
-                        onChange={(e) =>
+                        onChange={async (e) => {
+                          const newValue = e.target.checked;
                           setPreferencesForm({
                             ...preferencesForm,
-                            notifications: e.target.checked,
-                          })
-                        }
+                            notifications: newValue,
+                          });
+                          
+                          await updateProfile({
+                            preferences: {
+                              darkMode: preferencesForm.darkMode,
+                              notifications: newValue,
+                              autoCategories: preferencesForm.autoCategories,
+                            },
+                          });
+                        }}
                       />
                       <span className="toggle-slider"></span>
                     </label>
-                  </div>
+                  </div> */}
 
                   <div className="toggle-item">
                     <div className="toggle-info">
@@ -422,27 +438,25 @@ function Settings() {
                       <input
                         type="checkbox"
                         checked={preferencesForm.autoCategories}
-                        onChange={(e) =>
+                        onChange={async (e) => {
+                          const newValue = e.target.checked;
                           setPreferencesForm({
                             ...preferencesForm,
-                            autoCategories: e.target.checked,
-                          })
-                        }
+                            autoCategories: newValue,
+                          });
+
+                          await updateProfile({
+                            preferences: {
+                              darkMode: preferencesForm.darkMode,
+                              notifications: preferencesForm.notifications,
+                              autoCategories: newValue,
+                            },
+                          });
+                        }}
                       />
                       <span className="toggle-slider"></span>
                     </label>
                   </div>
-                </div>
-
-                <div className="panel-actions">
-                  <Button
-                    variant="primary"
-                    onClick={handleSavePreferences}
-                    loading={saving}
-                  >
-                    <Save size={16} />
-                    <span>Save Preferences</span>
-                  </Button>
                 </div>
               </div>
             </div>
