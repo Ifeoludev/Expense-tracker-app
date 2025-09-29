@@ -144,9 +144,9 @@ function EnhancedRegister({ onToggleMode }) {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <div className="brand-icon">
+          {/* <div className="brand-icon">
             <Shield size={32} color="#3b82f6" />
-          </div>
+          </div> */}
           <h2 className="auth-title">Create Your Account</h2>
           {/* <p className="auth-subtitle">
             Join thousands of users tracking their expenses securely
@@ -299,7 +299,7 @@ function EnhancedRegister({ onToggleMode }) {
             style={{ width: "100%", marginTop: "1rem" }}
           >
             <UserPlus size={20} />
-            <span>Create Secure Account</span>
+            <span>Create Account</span>
           </Button>
         </form>
 

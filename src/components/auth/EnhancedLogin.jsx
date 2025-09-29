@@ -86,11 +86,11 @@ function EnhancedLogin({ onToggleMode }) {
     <div className="auth-container">
       <div className="auth-card">
         <div className="auth-header">
-          <div className="brand-icon">
+          {/* <div className="brand-icon">
             <Shield size={32} color="#3b82f6" />
-          </div>
+          </div> */}
           <h2 className="auth-title">Welcome Back!</h2>
-          <p className="auth-subtitle">Sign in to your secure account</p>
+          <p className="auth-subtitle">Sign in to your account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
