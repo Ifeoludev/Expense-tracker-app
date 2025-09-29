@@ -1,0 +1,40 @@
+/* Import our global styles */
+@import url("./styles/globals.css");
+
+/* Import component styles */
+@import url("./styles/components/Button.css");
+@import url("./styles/components/Input.css");
+@import url("./styles/components/Card.css");
+
+/* Import our global styles */
+@import url("./styles/globals.css");
+
+/* Import component styles */
+@import url("./styles/components/Button.css");
+@import url("./styles/components/Input.css");
+@import url("./styles/components/Card.css");
+
+/* Import layout styles */
+@import url("./styles/layout/Header.css");
+@import url("./styles/layout/Layout.css");
+
+/* Main CSS file - imports everything */
+@import url("./App.css");
+
+/* Basic reset and body styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Segoe UI", "Arial Unicode MS", sans-serif;
+  line-height: 1.6;
+  color: #1f2937;
+  background-color: #f9fafb;
+}
+
+#root {
+  min-height: 100vh;
+}
