@@ -148,9 +148,9 @@ function EnhancedRegister({ onToggleMode }) {
             <Shield size={32} color="#3b82f6" />
           </div>
           <h2 className="auth-title">Create Your Account</h2>
-          <p className="auth-subtitle">
+          {/* <p className="auth-subtitle">
             Join thousands of users tracking their expenses securely
-          </p>
+          </p> */}
         </div>
 
         <form onSubmit={handleSubmit} className="auth-form">
@@ -278,7 +278,7 @@ function EnhancedRegister({ onToggleMode }) {
             </div>
           )}
 
-          <div className="terms-notice">
+          {/* <div className="terms-notice">
             <p>
               By creating an account, you agree to our{" "}
               <a href="/terms" className="link-button">
@@ -289,7 +289,7 @@ function EnhancedRegister({ onToggleMode }) {
                 Privacy Policy
               </a>
             </p>
-          </div>
+          </div> */}
 
           <Button
             type="submit"
@@ -303,7 +303,7 @@ function EnhancedRegister({ onToggleMode }) {
           </Button>
         </form>
 
-        <div className="security-features">
+        {/* <div className="security-features">
           <h4>Your account will include:</h4>
           <ul>
             <li>
@@ -319,7 +319,7 @@ function EnhancedRegister({ onToggleMode }) {
               <span>Secure data backup</span>
             </li>
           </ul>
-        </div>
+        </div> */}
 
         <div className="auth-footer">
           <p>

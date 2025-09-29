@@ -151,15 +151,9 @@ function EnhancedLogin({ onToggleMode }) {
             style={{ width: "100%", marginTop: "1rem" }}
           >
             <LogIn size={20} />
-            <span>Sign In Securely</span>
+            <span>Sign In </span>
           </Button>
         </form>
-
-        <div className="security-notice">
-          <Shield size={16} color="#10b981" />
-          <p>Your data is protected with enterprise-grade security</p>
-        </div>
-
         <div className="auth-footer">
           <p>
             Don't have an account?{" "}
