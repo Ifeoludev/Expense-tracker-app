@@ -2208,6 +2208,10 @@ input:checked + .toggle-slider:before {
   transition: color 0.3s ease;
 }
 
+.insights-card {
+  margin-top: 2rem;
+}
+
 /* Top Expenses */
 .top-expenses-list {
   display: flex;
