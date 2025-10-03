@@ -39,14 +39,14 @@ _Currency Support_
 
 _Tech Stack_
 -Frontend
--React 19.1.1: Modern UI with hooks and functional components
--Vite 7.1.7: Lightning-fast build tool and dev server
--React Router DOM 7.9.1: Client-side routing
--Recharts 3.2.1: Data visualization with charts
--Lucide React 0.544.0: Beautiful icon system
+-React: Modern UI with hooks and functional components
+-Vite: Lightning-fast build tool and dev server
+-React Router DOM: Client-side routing
+-Recharts: Data visualization with charts
+-Lucide React: Beautiful icon system
 
 _Backend & Services_
--Firebase 12.3.0:
+-Firebase:
 -Authentication (Email/Password)
 -Firestore (Real-time database)
 -Security Rules
