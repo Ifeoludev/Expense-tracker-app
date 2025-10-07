@@ -1112,7 +1112,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: linear-gradient(135deg, #053ca4 0%, #4084d7 100%);
+  background: var(--bg-primary);
   padding: 1rem;
 }
 
