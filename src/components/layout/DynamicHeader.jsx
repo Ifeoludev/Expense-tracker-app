@@ -19,8 +19,8 @@ import Button from "../ui/Button";
 function DynamicHeader({ currentPage, onNavigate }) {
   const { currentUser } = useAuth();
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isHidden, setIsHidden] = useState(false);
-  const [lastScrollY, setLastScrollY] = useState(0);
+  // const [isHidden, setIsHidden] = useState(false);
+  const [lastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
 
@@ -79,11 +79,7 @@ function DynamicHeader({ currentPage, onNavigate }) {
 
   return (
     <>
-      <header
-        className={`dynamic-header ${isScrolled ? "scrolled" : ""} ${
-          isHidden ? "hidden" : ""
-        }`}
-      >
+      <header className={`dynamic-header ${isScrolled ? "scrolled" : ""} `}>
         <div className="header-container">
           <div className="mobile-controls">
             <button

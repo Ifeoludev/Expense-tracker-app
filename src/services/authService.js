@@ -36,7 +36,7 @@ export const authService = {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
 
       const user = userCredential.user;
@@ -90,7 +90,7 @@ export const authService = {
       const userCredential = await signInWithEmailAndPassword(
         auth,
         email,
-        password
+        password,
       );
 
       const user = userCredential.user;
@@ -103,15 +103,6 @@ export const authService = {
         email: user.email,
         emailVerified: user.emailVerified,
       });
-
-      if (!user.emailVerified) {
-        return {
-          success: false,
-          error: "Please verify your email address before logging in.",
-          code: "email-not-verified",
-          user: user,
-        };
-      }
 
       return {
         success: true,
@@ -216,7 +207,7 @@ export const authService = {
         "EMAIL_VERIFICATION_RESENT",
         {
           email: user.email,
-        }
+        },
       );
 
       return {
@@ -241,7 +232,7 @@ export const authService = {
 
       const credential = EmailAuthProvider.credential(
         user.email,
-        currentPassword
+        currentPassword,
       );
       await reauthenticateWithCredential(user, credential);
 
@@ -277,7 +268,7 @@ export const authService = {
 
       const credential = EmailAuthProvider.credential(
         user.email,
-        currentPassword
+        currentPassword,
       );
       await reauthenticateWithCredential(user, credential);
 
@@ -321,12 +312,12 @@ export const authService = {
 
       const expensesQuery = query(
         collection(db, "expenses"),
-        where("userId", "==", userId)
+        where("userId", "==", userId),
       );
       const expensesSnapshot = await getDocs(expensesQuery);
 
       const deletePromises = expensesSnapshot.docs.map((doc) =>
-        deleteDoc(doc.ref)
+        deleteDoc(doc.ref),
       );
       await Promise.all(deletePromises);
 
@@ -389,7 +380,7 @@ export const authService = {
         collection(db, "securityEvents"),
         where("userId", "==", userId),
         orderBy("timestamp", "desc"),
-        limit(limitCount)
+        limit(limitCount),
       );
       const eventsSnapshot = await getDocs(eventsQuery);
       const events = eventsSnapshot.docs.map((doc) => ({
@@ -432,7 +423,7 @@ export const authService = {
         error.code === "unauthenticated"
       ) {
         console.warn(
-          "Security logging disabled - Firestore permissions not configured"
+          "Security logging disabled - Firestore permissions not configured",
         );
         console.log("Security Event (local):", {
           userId,

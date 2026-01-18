@@ -25,22 +25,26 @@ export function useAnalytics(timeframe = "all") {
       const expenseDate = new Date(expense.date);
 
       switch (timeframe) {
-        case "week":
+        case "week": {
           const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
           return expenseDate >= weekAgo;
-        case "month":
+        }
+        case "month": {
           const monthAgo = new Date(now.getFullYear(), now.getMonth(), 1);
           return expenseDate >= monthAgo;
-        case "3months":
+        }
+        case "3months": {
           const threeMonthsAgo = new Date(
             now.getFullYear(),
             now.getMonth() - 3,
-            1
+            1,
           );
           return expenseDate >= threeMonthsAgo;
-        case "year":
+        }
+        case "year": {
           const yearAgo = new Date(now.getFullYear(), 0, 1);
           return expenseDate >= yearAgo;
+        }
         default:
           return true;
       }
@@ -49,7 +53,7 @@ export function useAnalytics(timeframe = "all") {
     // Calculate basic metrics
     const totalExpenses = filteredExpenses.reduce(
       (sum, expense) => sum + expense.amount,
-      0
+      0,
     );
     const expenseCount = filteredExpenses.length;
     const averageExpense = expenseCount > 0 ? totalExpenses / expenseCount : 0;
@@ -63,7 +67,7 @@ export function useAnalytics(timeframe = "all") {
     const categoryBreakdown = Object.entries(categoryTotals)
       .map(([categoryId, amount]) => {
         const categoryInfo = DEFAULT_CATEGORIES.find(
-          (cat) => cat.id === categoryId
+          (cat) => cat.id === categoryId,
         );
         return {
           name: categoryInfo?.name || "Unknown",
@@ -104,15 +108,16 @@ export function useAnalytics(timeframe = "all") {
           return 90;
         case "year":
           return 365;
-        default:
+        default: {
           if (filteredExpenses.length === 0) return 1;
           const oldestDate = new Date(
-            Math.min(...filteredExpenses.map((e) => new Date(e.date)))
+            Math.min(...filteredExpenses.map((e) => new Date(e.date))),
           );
           const daysDiff = Math.ceil(
-            (now - oldestDate) / (1000 * 60 * 60 * 24)
+            (now - oldestDate) / (1000 * 60 * 60 * 24),
           );
           return Math.max(daysDiff, 1);
+        }
       }
     })();
     const dailyAverage = totalExpenses / timeSpanDays;
@@ -129,11 +134,7 @@ export function useAnalytics(timeframe = "all") {
       }));
 
     // Generate insights
-    const insights = generateInsights(
-      filteredExpenses,
-      categoryBreakdown,
-      timeframe
-    );
+    const insights = generateInsights(filteredExpenses, categoryBreakdown);
 
     return {
       totalExpenses,
@@ -151,7 +152,7 @@ export function useAnalytics(timeframe = "all") {
   return { ...analytics, loading };
 }
 
-function generateInsights(expenses, categoryBreakdown, timeframe) {
+function generateInsights(expenses, categoryBreakdown) {
   const insights = [];
 
   if (expenses.length === 0) return insights;
@@ -178,7 +179,7 @@ function generateInsights(expenses, categoryBreakdown, timeframe) {
     Object.values(dayTotals).reduce((sum, amount) => sum + amount, 0) /
     Object.keys(dayTotals).length;
   const highSpendingDays = Object.entries(dayTotals).filter(
-    ([, amount]) => amount > avgDailySpending * 2
+    ([, amount]) => amount > avgDailySpending * 2,
   );
 
   if (highSpendingDays.length > 0) {

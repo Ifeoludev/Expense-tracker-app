@@ -2,7 +2,7 @@ import React from "react";
 import Header from "./DynamicHeader";
 import { Layout } from "lucide-react";
 
-function Layout({ children, currentPage, onNavigate }) {
+function AppLayout({ children, currentPage, onNavigate }) {
   return (
     <div className="layout">
       <Header currentPage={currentPage} onNavigate={onNavigate} />
@@ -11,4 +11,4 @@ function Layout({ children, currentPage, onNavigate }) {
   );
 }
 
-export default Layout;
+export default AppLayout;

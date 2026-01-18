@@ -19,7 +19,7 @@ function CategoryPieChart({ data }) {
     );
   }
 
-  const CustomTooltip = ({ active, payload, label }) => {
+  const CustomTooltip = ({ active, payload /*, label */ }) => {
     if (active && payload && payload.length) {
       const data = payload[0].payload;
       return (

@@ -105,7 +105,7 @@ function Settings() {
     setSaving(false);
   };
 
-  const handleSavePreferences = async () => {
+  /* const handleSavePreferences = async () => {
     setSaving(true);
     const result = await updateProfile({
       preferences: {
@@ -121,7 +121,7 @@ function Settings() {
       alert("Error: " + result.error);
     }
     setSaving(false);
-  };
+  }; */
 
   const handleExport = async () => {
     setExporting(true);

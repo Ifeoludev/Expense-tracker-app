@@ -51,11 +51,7 @@ function SecuritySettings() {
   const [deleteLoading, setDeleteLoading] = useState(false);
   const [deleteError, setDeleteError] = useState("");
 
-  useEffect(() => {
-    loadSecurityData();
-  }, [currentUser]);
-
-  const loadSecurityData = async () => {
+  const loadSecurityData = React.useCallback(async () => {
     if (!currentUser) return;
 
     setLoading(true);
@@ -74,7 +70,11 @@ function SecuritySettings() {
     }
 
     setLoading(false);
-  };
+  }, [currentUser]);
+
+  useEffect(() => {
+    loadSecurityData();
+  }, [loadSecurityData]);
 
   const handleResendVerification = async () => {
     const result = await authService.resendEmailVerification();
@@ -103,7 +103,7 @@ function SecuritySettings() {
 
     const result = await authService.changePassword(
       passwordForm.currentPassword,
-      passwordForm.newPassword
+      passwordForm.newPassword,
     );
 
     if (result.success) {
@@ -130,7 +130,7 @@ function SecuritySettings() {
 
     const result = await authService.updateEmail(
       emailForm.newEmail,
-      emailForm.currentPassword
+      emailForm.currentPassword,
     );
 
     if (result.success) {
