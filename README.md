@@ -1,8 +1,5 @@
 # Xpense Tracker App
 
-> **Financial Clarity in a Glance.**
-> A modern, privacy-focused Personal Finance Manager customized for the Nigerian context (₦).
-
 Built with **React**, **Vite**, and **Firebase**.
 
 ---
