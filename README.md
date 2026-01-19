@@ -2,8 +2,6 @@
 
 Built with **React**, **Vite**, and **Firebase**.
 
----
-
 ## Key Features
 
 ### Smart Dashboard
