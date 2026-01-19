@@ -12,7 +12,7 @@ import {
   PieChart,
   Activity,
 } from "lucide-react";
-import { useTheme } from "../context/ThemeContext";
+// import { useTheme } from "../context/ThemeContext";
 import { useExpenses } from "../hooks/useExpenses";
 import { useAnalytics } from "../hooks/useAnalytics";
 import { DEFAULT_CATEGORIES } from "../constants/categories";
@@ -20,29 +20,31 @@ import Button from "../components/ui/Button";
 import Currency from "../components/ui/Currency";
 
 function Dashboard({ onNavigate }) {
-  const { isDarkMode } = useTheme();
+  // const { isDarkMode } = useTheme();
   const { expenses, loading } = useExpenses();
   const [selectedTimeframe, setSelectedTimeframe] = useState("month");
   const analytics = useAnalytics(selectedTimeframe);
 
   // Calculate comparison with previous period
+  /* Calculate comparison with previous period */
   const getPreviousPeriodComparison = () => {
     const now = new Date();
-    let currentStart, previousStart, previousEnd;
+    let previousStart, previousEnd;
 
     if (selectedTimeframe === "month") {
-      currentStart = new Date(now.getFullYear(), now.getMonth(), 1);
+      /* Compare current month (accumulating) vs FULL previous month (User Preference) */
       previousStart = new Date(now.getFullYear(), now.getMonth() - 1, 1);
       previousEnd = new Date(now.getFullYear(), now.getMonth(), 0);
+      previousEnd.setHours(23, 59, 59, 999);
     } else if (selectedTimeframe === "week") {
       const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000);
-      currentStart = weekAgo;
       previousStart = new Date(weekAgo.getTime() - 7 * 24 * 60 * 60 * 1000);
       previousEnd = weekAgo;
     }
 
     if (!previousStart) return { change: 0, isIncrease: false };
 
+    /* Filter expenses for the previous period */
     const previousExpenses = expenses.filter((expense) => {
       const expenseDate = new Date(expense.date);
       return expenseDate >= previousStart && expenseDate <= previousEnd;
@@ -50,8 +52,13 @@ function Dashboard({ onNavigate }) {
 
     const previousTotal = previousExpenses.reduce(
       (sum, expense) => sum + expense.amount,
-      0
+      0,
     );
+
+    /* Calculate current period total (only up to now for fair comparison) */
+    /* Note: useAnalytics already gives us totalExpenses for the *entire* selected timeframe.
+       For "week", it matches. For "month", useAnalytics includes up to 'now', which is correct. */
+
     const change =
       previousTotal > 0
         ? ((analytics.totalExpenses - previousTotal) / previousTotal) * 100
@@ -204,7 +211,7 @@ function Dashboard({ onNavigate }) {
             {analytics.categoryBreakdown.length > 0 ? (
               analytics.categoryBreakdown.map((category, index) => {
                 const categoryInfo = DEFAULT_CATEGORIES.find(
-                  (cat) => cat.name === category.name
+                  (cat) => cat.name === category.name,
                 );
                 const IconComponent = categoryInfo?.icon;
 
@@ -250,7 +257,7 @@ function Dashboard({ onNavigate }) {
             {analytics.topExpenses.length > 0 ? (
               analytics.topExpenses.slice(0, 5).map((expense, index) => {
                 const categoryInfo = DEFAULT_CATEGORIES.find(
-                  (cat) => cat.id === expense.category
+                  (cat) => cat.id === expense.category,
                 );
                 const IconComponent = categoryInfo?.icon;
 
@@ -306,7 +313,7 @@ function Dashboard({ onNavigate }) {
               <div className="trend-bars">
                 {analytics.monthlyTrend.map((month, index) => {
                   const maxAmount = Math.max(
-                    ...analytics.monthlyTrend.map((m) => m.amount)
+                    ...analytics.monthlyTrend.map((m) => m.amount),
                   );
                   const height =
                     maxAmount > 0 ? (month.amount / maxAmount) * 100 : 0;
@@ -316,7 +323,7 @@ function Dashboard({ onNavigate }) {
                       <div
                         className="trend-bar"
                         style={{ height: `${height}%` }}
-                        title={`${month.month}: $${month.amount.toFixed(2)}`}
+                        title={`${month.month}: \u20A6${month.amount.toFixed(2)}`}
                       ></div>
                       <span className="trend-label">
                         {month.month.slice(0, 3)}

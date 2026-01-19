@@ -1,149 +1,97 @@
-**ExpenseTracker - Personal Finance Management App**
-A modern, full-featured expense tracking application built with React, Vite, and Firebase. Track your spending, visualize patterns, and manage your budget with an intuitive interface and robust security features.
+# 💰 Xpense Tracker App
 
-**Features**
-_Core Functionality_
--Expense Management: Add, edit, and delete expenses with detailed categorization
--Real-time Sync: All data syncs instantly across devices using Firebase Firestore
--Smart Analytics: View spending patterns with interactive charts (Pie & Bar charts)
--Budget Tracking: Set monthly and category-specific budgets with alerts
--Data Export: Export expenses to CSV for external analysis
+> **Financial Clarity in a Glance.**
+> A modern, privacy-focused Personal Finance Manager customized for the Nigerian context (₦).
 
-_Security & Authentication_
--Email/Password Authentication: Secure Firebase authentication
--Email Verification: Required verification before account access
--Password Recovery: Self-service password reset via email
--Account Management: Change email, update password, delete account
--Security Events Logging: Track login history and security-related activities
--Session Management: Automatic logout and session handling
+Built with **React**, **Vite**, and **Firebase**.
 
-_User Experience_
--Dark Mode: Full dark theme support with persistent preferences
--Responsive Design: Optimized for desktop, tablet, and mobile devices
--Mobile Navigation: Slide-out menu with smooth animations
--Loading States: Proper loading indicators throughout the app
--Error Handling: User-friendly error messages with recovery suggestions
--Empty States: Helpful guidance when no data is available
+---
 
-_Analytics & Insights_
--Category Breakdown: Visualize spending by category with pie charts
--Monthly Trends: Track spending patterns over time with bar charts
--Top Expenses: Quick view of your largest transactions
--Smart Insights: AI-generated observations about spending habits
--Time Filters: Analyze data by week, month, quarter, year, or all-time
--Comparison Metrics: See changes from previous periods
+## 🌟 Key Features
 
-_Currency Support_
--Nigerian Naira: Default and only supported currency
--Proper Formatting: Locale-aware number formatting
+### 📊 Smart Dashboard
 
-_Tech Stack_
--Frontend
--React: Modern UI with hooks and functional components
--Vite: Lightning-fast build tool and dev server
--React Router DOM: Client-side routing
--Recharts: Data visualization with charts
--Lucide React: Beautiful icon system
+- **Fair Comparison**: Dynamically compares your spending "Month-to-Date" vs "Last Month Total" so you know exactly where you stand.
+- **Visual Patterns**: Interactive Bar and Pie charts powered by `Recharts` to visualize where your money goes.
+- **Currency Support**: Native support for **Nigerian Naira (₦)**.
 
-_Backend & Services_
--Firebase:
--Authentication (Email/Password)
--Firestore (Real-time database)
--Security Rules
--Cloud Functions Ready: Architecture supports serverless functions
+### 💰 Expense Management
 
-_State Management_
--Context API: Global state with AuthContext and ThemeContext
--Custom Hooks: Reusable logic with useExpenses, useProfile, useAnalytics
--Real-time Subscriptions: Live data updates with Firestore listeners
+- **Real-Time Sync**: Add an expense on your phone, and it appears instantly on your laptop (powered by Firestore).
+- **Detailed Analytics**: Drill down by category (Food, Housing, Transport) or timeframe (Week, Month, Year).
+- **Export**: Download your data to CSV for Excel analysis.
 
-**Project Structure**
-expense-tracker/
-+-- public/ # Static assets
-+-- src/
-¦ +-- components/ # Reusable components
-¦ ¦ +-- analytics/ # Chart components
-¦ ¦ +-- auth/ # Authentication components
-¦ ¦ +-- expense/ # Expense-related components
-¦ ¦ +-- layout/ # Layout components (Header, Nav)
-¦ ¦ +-- ui/ # UI primitives (Button, Input, Modal)
-¦ +-- constants/ # App constants and configurations
-¦ +-- context/ # React Context providers
-¦ +-- hooks/ # Custom React hooks
-¦ +-- pages/ # Page components
-¦ +-- services/ # Firebase and API services
-¦ +-- styles/ # CSS files
-¦ +-- App.jsx # Main app component
-¦ +-- main.jsx # Entry point
-¦ +-- index.css # Global styles
-+-- .env.local # Environment variables (not in repo)
-+-- .gitignore
-+-- package.json
-+-- vite.config.js
-+-- README.md
+### 🔒 Bank-Grade Security
 
-**Usage Guide**
-_Adding Your First Expense_
--Sign up or log in to your account
--Verify your email address
--Navigate to "Add Expense"
--Fill in amount, description, category, and date
--Click "Add Expense"
+- **Audit Logs**: View a complete history of every login, password change, and security event in `Settings`.
+- **Account Control**: Change your email, password, or permanently delete your account (GDPR compliant).
+- **Authentication**: Secure Email/Password login. _Email verification is optional for quick access._
 
-_Viewing Analytics_
--Go to the "Analytics" page
--Select a timeframe (week, month, year, etc.)
--View charts showing spending by category and over time
--Check "Smart Insights" for spending observations
+---
 
-_Managing Budget_
--Navigate to Settings -> Budget
--Set your monthly budget limit
--Configure category-specific budgets
--Set budget alert threshold (70%, 80%, 90%, 95%)
+## 🛠️ Tech Stack
 
-_Exporting Data_
--Go to Settings -> Data
--Click "Export to CSV"
--Your expenses will download as a spreadsheet
+### Frontend
 
-**API Services**
-_Authentication Service (authService.js)_
--register(email, password, displayName) - Create new account
--login(email, password) - Sign in user
--logout() - Sign out user
--resetPassword(email) - Send password reset email
--resendEmailVerification() - Resend verification email
--changePassword(current, new) - Update password
--updateEmail(newEmail, password) - Change email address
--deleteAccount(password) - Permanently delete account
+- **React 18**: Function components & Hooks (`useAuth`, `useExpenses`).
+- **Vite**: Lightning-fast build tool.
+- **CSS Modules**: Custom "Blue/Gray" design system with Dark Mode support (via `ThemeContext`).
 
-_Expense Service (expenseService.js)_
--addExpense(userId, data) - Create expense
--updateExpense(id, updates) - Modify expense
--deleteExpense(id) - Remove expense
--getUserExpenses(userId, callback) - Real-time expense subscription
+### Backend (Serverless)
 
-_Export Service (exportService.js)_
--exportToCSV(userId) - Download expenses as CSV
--clearAllData(userId) - Delete all user expenses
+- **Firebase Auth**: Identity management.
+- **Firestore**: NoSQL Real-time database.
 
-**Custom Hooks**
-_useExpenses()_
--Returns expense data and CRUD operations
--javascriptconst { expenses, loading, error, addExpense, updateExpense, deleteExpense } = useExpenses();
+---
 
-_useProfile()_
--Manages user profile and preferences
--javascriptconst { profile, loading, updateProfile, changePassword } = useProfile();
+## 🚀 Getting Started
 
-_useAnalytics(timeframe)_
--Provides spending analytics
--javascriptconst analytics = useAnalytics('month');
+1.  **Clone the repo**
 
-**Styling**
-The app uses a custom CSS design system with:
--CSS Variables for theming
--Component-scoped CSS files
--Dark mode support
--Mobile-first responsive design
+    ```bash
+    git clone https://github.com/yourusername/expense-tracker.git
+    cd expense-tracker
+    ```
+
+2.  **Install Dependencies**
+
+    ```bash
+    npm install
+    ```
+
+3.  **Run Locally**
+
+    ```bash
+    npm run dev
+    ```
+
+4.  **Build for Production**
+    ```bash
+    npm run build
+    ```
+
+---
+
+## 📂 Project Structure
+
+```
+src/
+├── components/      # Reusable UI (Modals, Cards, Buttons)
+├── context/         # Global State (Auth, Theme)
+├── hooks/           # Business Logic (e.g., useAnalytics.js)
+├── pages/           # Main Views (Dashboard, Settings)
+├── services/        # Firebase Integrations (The only files that touch the DB)
+└── styles/          # Global Design Tokens
+```
+
+## 📝 Usage Guide
+
+- **Dark Mode**: Toggle via the moon icon in the navigation bar.
+- **Recurring Expenses**: Currently supported via manual entry (Feature coming soon).
+- **Budget Alerts**: Configure your monthly limit in `Settings`.
+
+---
+
+## 📜 License
+
+MIT License. Free to use and modify.

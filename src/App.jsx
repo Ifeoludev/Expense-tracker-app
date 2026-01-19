@@ -8,13 +8,12 @@ import ExpenseList from "./pages/ExpenseList";
 import Analytics from "./pages/Analytics";
 import Settings from "./pages/Settings";
 import DynamicHeader from "./components/layout/DynamicHeader";
-import EmailVerification from "./components/auth/EmailVerification";
+
 import "./App.css";
 
 function App() {
   const { currentUser, loading } = useAuth();
   const [currentPage, setCurrentPage] = useState("dashboard");
-  const [showEmailVerification, setShowEmailVerification] = useState(false);
 
   // Reset page when user logs out
   useEffect(() => {
@@ -23,29 +22,8 @@ function App() {
     }
   }, [currentUser]);
 
-  // Check if logged-in user needs email verification
-  useEffect(() => {
-    if (currentUser && !currentUser.emailVerified) {
-      setShowEmailVerification(true);
-    } else {
-      setShowEmailVerification(false);
-    }
-  }, [currentUser]);
-
   const handleNavigation = (page) => {
     setCurrentPage(page);
-  };
-
-  const handleVerificationComplete = async () => {
-    setShowEmailVerification(false);
-    if (currentUser) {
-      await currentUser.reload(); // Refresh user status from Firebase
-    }
-  };
-
-  const handleSkipVerification = () => {
-    // Allow user to continue but maybe restrict access in pages
-    setShowEmailVerification(false);
   };
 
   if (loading) {
@@ -71,17 +49,7 @@ function App() {
     return <EnhancedAuthPage />;
   }
 
-  // Logged in but not verified ? show verification page
-  if (showEmailVerification) {
-    return (
-      <EmailVerification
-        onVerified={handleVerificationComplete}
-        onSkip={handleSkipVerification}
-      />
-    );
-  }
-
-  // Logged in and verified ? render main app
+  // Logged in ? render main app
   const renderPage = () => {
     switch (currentPage) {
       case "dashboard":

@@ -4,13 +4,13 @@ import { DEFAULT_CATEGORIES } from "../constants/categories";
 import { Save } from "lucide-react";
 import Input from "../components/ui/Input";
 import Button from "../components/ui/Button";
-import { useProfile } from "../hooks/useProfile";
+// import { useProfile } from "../hooks/useProfile";
 
 function AddExpense() {
   const { addExpense } = useExpenses();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const { profile } = useProfile();
+  /* const { profile } = useProfile(); */
 
   const [formData, setFormData] = useState({
     amount: "",

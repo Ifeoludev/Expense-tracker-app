@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Search, Filter, Trash2 } from "lucide-react";
 import { useExpenses } from "../hooks/useExpenses";
-import { useTheme } from "../context/ThemeContext";
+// import { useTheme } from "../context/ThemeContext";
 import { DEFAULT_CATEGORIES } from "../constants/categories";
 import ExpenseItem from "../components/expense/ExpenseItem";
 import EditExpenseModal from "../components/expense/EditExpenseModal";
@@ -40,7 +40,7 @@ function ExpenseList() {
 
   const totalAmount = filteredExpenses.reduce(
     (sum, expense) => sum + expense.amount,
-    0
+    0,
   );
   const totalCount = filteredExpenses.length;
 

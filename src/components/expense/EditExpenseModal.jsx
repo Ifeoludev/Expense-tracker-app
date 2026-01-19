@@ -80,18 +80,21 @@ function EditExpenseModal({ expense, isOpen, onClose, onSave, loading }) {
         <div className="form-group">
           <label className="form-label">Category</label>
           <div className="category-grid">
-            {DEFAULT_CATEGORIES.map(({ id, name, icon: Icon, color }) => (
-              <div
-                key={id}
-                className={`category-option ${
-                  formData.category === id ? "selected" : ""
-                }`}
-                onClick={() => handleCategorySelect(id)}
-              >
-                <Icon size={24} color={color} strokeWidth={2} />
-                <span className="category-name">{name}</span>
-              </div>
-            ))}
+            {DEFAULT_CATEGORIES.map(
+              // eslint-disable-next-line no-unused-vars
+              ({ id, name, icon: IconComponent, color }) => (
+                <div
+                  key={id}
+                  className={`category-option ${
+                    formData.category === id ? "selected" : ""
+                  }`}
+                  onClick={() => handleCategorySelect(id)}
+                >
+                  <IconComponent size={24} color={color} strokeWidth={2} />
+                  <span className="category-name">{name}</span>
+                </div>
+              ),
+            )}
           </div>
         </div>
 
